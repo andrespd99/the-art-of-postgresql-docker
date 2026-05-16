@@ -30,10 +30,10 @@ Point your graphical client to `postgresql://postgres@127.0.0.1:5440`.
 
 ## Chinook music database
 You can seed the Chinook database used in TAOP using the provided
-`fetch-chinook-data.sh` script.
+`./scripts/fetch-chinook-data.sh` script.
 
 ```shell
-$ docker exec -it artofpostgres fetch-chinook-data.sh
+$ docker exec -it artofpostgres /scripts/fetch-chinook-data.sh
 ```
 
 ## F1DB data
@@ -42,8 +42,8 @@ import compatible with future versions by importing into MySQL first and then
 moving the data over to PostgreSQL using `pgloader`.
 
 ```bash
-$ docker exec -it artofpostgres ./fetch-f1db-data.sh
+$ docker exec -it artofpostgres /scripts/fetch-f1db-data.sh
 
 # PostgreSQL database
-$ docker exec -it artofpostgres ./fetch-f1db-data.sh --recreate
+$ docker exec -it artofpostgres /scripts/fetch-f1db-data.sh --recreate
 ```

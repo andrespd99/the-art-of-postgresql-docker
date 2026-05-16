@@ -1,18 +1,20 @@
-FROM postgres:9
+FROM postgres:14-bullseye
 
-RUN apt-get update
-# General dependencies
-RUN apt-get install -y emacs nano vim wget sudo pgloader
+RUN apt-get update && \
+    apt-get install -y --no-install-recommends \
+    emacs \
+    nano \
+    vim \
+    wget \
+    sudo \
+    pgloader \
+    bzip2 \
+    && rm -rf /var/lib/apt/lists/*
 
-# Give postgres user sudo privileges
-RUN usermod -a -G sudo postgres; \
+# Give postgres user sudo privileges (useful for dev convenience)
+RUN usermod -a -G sudo postgres && \
     echo '%sudo ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers
 
 USER postgres
 
-WORKDIR /var/lib/postgresql
-
-VOLUME [ "/var/lib/postgresql" ]
-
-# PostgreSQL's port
 EXPOSE 5432
