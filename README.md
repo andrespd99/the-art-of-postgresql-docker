@@ -1,3 +1,4 @@
+
 # Docker for TAOP
 A basic postgres Docker setup for going through [The Art of PostgreSQL](https://tapoueh.org/)
 by Dimitri Fontaine. It uses the official PostgreSQL 9 (what the book uses)
@@ -8,11 +9,15 @@ A `.psqlrc` file is included, along with three text editors: emacs, nano and
 vim. You can choose your favorite and set it in the `.psqlrc` file (the default
 is `nano` for the broadest accessibility).
 
+## About this codebase
+
+This is a fork of [mikebranski's repository](https://github.com/mikebranski/the-art-of-postgresql-docker/tree/master) with updated datasets and runtime environments.
+
 # Using
 First, build the image and bring the container up.
 
 ```shell
-docker-compose up --build
+docker compose up --build
 ```
 
 Next, connect using your postgresql client of choice.
@@ -37,13 +42,9 @@ $ docker exec -it artofpostgres /scripts/fetch-chinook-data.sh
 ```
 
 ## F1DB data
-Since the PostgreSQL F1DB dump doesn't work without modification, we keep the
-import compatible with future versions by importing into MySQL first and then
-moving the data over to PostgreSQL using `pgloader`.
+
+I included the F1 DB data as part of this repo because the site from which the original script downloaded the data from is not available anymore.
 
 ```bash
 $ docker exec -it artofpostgres /scripts/fetch-f1db-data.sh
-
-# PostgreSQL database
-$ docker exec -it artofpostgres /scripts/fetch-f1db-data.sh --recreate
 ```

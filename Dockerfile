@@ -9,6 +9,7 @@ RUN apt-get update && \
     sudo \
     pgloader \
     bzip2 \
+    zsh \
     && rm -rf /var/lib/apt/lists/*
 
 # Give postgres user sudo privileges (useful for dev convenience)
